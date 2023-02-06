@@ -1,0 +1,13 @@
+<form action="{% url 'input_realizado' %}" method="POST">
+    {% csrf_token %}
+    <label for="Tipo de Input">
+    <input type="text" name="TipoInput">
+    <button type = "submit">]Salvar</button>  
+    </label>
+</form>
+
+<!-- Comentario em HTML
+    - action = sera a url que iremos seguir
+    - csrf_token - questão de segurança
+    - tipo e botão para input
+ -->

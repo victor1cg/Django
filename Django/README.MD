@@ -37,6 +37,7 @@ Configurações especificas.
 ### Projeto vs APP
 
 Um projeto pode conter um ou mais aplicativos.  
+Exemplo, projeto de Investimentos posso ter apps de investimento em Renda Fixa e Renda Variavel.
 ```
 python manage.py startapp 'nome_app'
 ```
@@ -66,7 +67,16 @@ urlpatterns = [
 ```
 
 *views.py* Aqui é possivel montar a visualização de cada pagina.
+
+Exemplo de função para retornar o valor inputado.
+```
+def input_realizado (request):
+    tipo_input = {
+        'tipo_input': request.POST.get('TipoInput')
+    }
+    return render(request,'templates/input_registrado.html',tipo_input)
 ```
 
-```
+### MODELS  
+Como submeter dados em um banco de dados ?
 
