@@ -5,13 +5,13 @@ Data : 02/02/2023
 
 -----  
 No Terminal (Shell)
-```
-django-admin - Traz todos os comando disponiveis
-django-admin startproject 'nome projeto' - começar um projeto
-cd no projeto
+```bash
+django-admin # Traz todos os comando disponiveis
+django-admin startproject 'nome projeto' # começar um projeto
+cd 'no projeto'
 ls - para verificar se realmente criou
-python manage.py runserver      - criar um servidor local utilizando a porta 8000
-python manage.py runserver 5000 - utilizando a porta 5000
+python manage.py runserver      # criar um servidor local utilizando a porta 8000
+python manage.py runserver 5000 # utilizando a porta 5000
 
 ```
 ### Arquivos Projeto
@@ -38,9 +38,11 @@ Configurações especificas.
 
 Um projeto pode conter um ou mais aplicativos.  
 Exemplo, projeto de Investimentos posso ter apps de investimento em Renda Fixa e Renda Variavel.
-```
+
+```bash
 python manage.py startapp 'nome_app'
 ```
+
 Dentro do *settings.py (PROJ) > INSTALLED_APPS*, devemos adicionar o app criado.  
 
 ### ROTAS  
@@ -53,8 +55,9 @@ Ciclo de app WEB:
 Para criar as rotas (URLS) devemos acessar o *urls.py(PROJ)*.  
 Por padrão somente temos o /admin.
 
-*urls.py* aqui é possivel definir as rotas de acordo com a função criada em views.py
-```
+*urls.py* aqui é possivel definir as rotas de acordo com a função criada em views.py  
+
+```python
 from dados_semanal import views  
 #views retornar alguma resposta dado o link direcionado abaixo.
 
@@ -69,7 +72,7 @@ urlpatterns = [
 *views.py* Aqui é possivel montar a visualização de cada pagina.
 
 Exemplo de função para retornar o valor inputado.
-```
+```python
 def input_realizado (request):
     tipo_input = {
         'tipo_input': request.POST.get('TipoInput')
@@ -77,6 +80,44 @@ def input_realizado (request):
     return render(request,'templates/input_registrado.html',tipo_input)
 ```
 
-### MODELS  
+### TEMPLATES  
+É necessario jogar a pasta de Templates dentro do APP.
+Com isso, modificar o settings TEMPLATES.
+
+### MODELS  (dentro do app_)
+É super importante para persistir os dados. Ou seja, guardar em algum local.
 Como submeter dados em um banco de dados ?
+
+Documentação: https://docs.djangoproject.com/en/3.1/topics/db/models/
+
+> DATA:
+> CLIENTE : 
+> MODELO : 
+> SELLOUT : PROJEÇÃO M0, REAL, ESTOQUE
+
+
+SQLite - Não precisa instalar servidor, pois já é nativo Python.  
+
+**MIGRATION** - Não é necessario escrever linha de codigo em SQL.  
+Criação automatica das tabelas conforme o Models.
+
+```bash 
+python manage.py makemigrations
+> app_dados_semanal/migrations/0001_initial.py #nome do migration 00001_initial.py
+> - Create model Semanal
+
+python manage.py migrate    #aplicando para o banco de dados.
+
+#Caso queria saber a query em SQL
+python manage.py sqlmigrate app_dados_semanal 0001_initial
+
+```
+
+![Tabela Importadas](image.png)
+
+Caso, queira *adicionar ou remover uma coluna de uma tabela*, basta modificar em models e rodar o manage.py makemigrations.
+
+
+
+
 
