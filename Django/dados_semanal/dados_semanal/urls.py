@@ -19,10 +19,12 @@ from app_dados_semanal import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.pagina_inicial),
+    #path('', views.pagina_inicial) modificar a pagina inicial para o input registrado,
+    path('', views.input_registrado,name= 'input_registrado'),
     path('contato/', views.contato),
     path('minha_historia/', views.minha_historia),
     path('novo_input/', views.novo_input,name='novo_input'),
     path('input_realizado/', views.input_realizado,name='input_realizado'),
+    path('<int:id>/', views.detalhe,name='detalhe'),
     
 ]

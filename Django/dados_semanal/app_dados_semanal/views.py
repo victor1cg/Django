@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
+from .models import Semanal
 # Create your views here.
 
 
@@ -31,3 +32,17 @@ def input_realizado (request):
         'tipo_input': request.POST.get('TipoInput')
     }
     return render(request,path,tipo_input)
+
+
+def input_registrado(request):
+    dados = {
+        'dados': Semanal.objects.all()            #ir até a tabela Semanal, e traga todos os registros.
+    }
+    return render (request,'input_registrado.html', context = dados)
+
+
+def detalhe(request,id):
+    dados = {
+        'dados': Semanal.objects.get(pk=id)
+    }
+    return render(request,'detalhe.html',dados)

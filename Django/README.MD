@@ -115,9 +115,40 @@ python manage.py sqlmigrate app_dados_semanal 0001_initial
 
 ![Tabela Importadas](image.png)
 
-Caso, queira *adicionar ou remover uma coluna de uma tabela*, basta modificar em models e rodar o manage.py makemigrations.
+Caso, queira *adicionar ou remover uma coluna de uma tabela*, basta modificar em models e rodar o *manage.py makemigrations* > *python manage.py migrate*.
 
+### CRUD
 
+Django Admin - Painel de gerenciamento, necessario incluir o path dentro do *urls.py*.
 
+```bash
+python manage.py createsuperuser
+Usuário (leave blank to use 'gitpod'): goncavic01     
+Endereço de email: victor1cg@hotmail.com
+Password: elux1234
+Password (again): elux1234
+```
 
+Dentro do arquivo *admin.py* iremos importar todas os templates que queremos visualizar.
 
+```bash
+from .models import Semanal
+admin.site.register(Semanal)
+```
+
+Listando os inputs para o usuario visualizar na primeira pagina. 
+Alterar em *urls.py* a home  
+E alterar o *views.py*:
+
+```python
+from .models import Semanal
+
+def input_registrado(request):
+    dados = {
+        'dados': Semanal.objects.all()            #ir até a tabela Semanal, e traga todos os registros.
+    }
+    return render (request,'input_registrado.html', context = dados)
+```
+
+### VISUALIZAR NO DETALHE DE CADA TRANSAÇÃO  
+Criar uma nova função em view para direcionar pelo id da transação.

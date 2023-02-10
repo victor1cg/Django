@@ -1,0 +1,31 @@
+<h1> Target vs Sellout </h1>
+
+<table border='1'>
+    <tr>
+        <th>DATA </th>
+        <th>CLIENTE</th>
+        <th>MODELO</th>
+        <th>PROJEÇÃO MO</th>
+        <th>REAL</th>
+        <th>ESTOQUE</th>
+    </tr>
+    <tr>
+        <td>01/02/2023</td>
+        <td>VIA VAREJO</td>
+        <td>LES11</td>
+        <td>1000</td>
+        <td>240</td>
+        <td>3340</td>
+    </tr>
+    {% for dado in dados %}    <!-- iteração em django-->
+    <tr>
+        <td>{{dado.data}}</td>
+        <td>{{dado.cliente}}</td>
+        <td>{{dado.modelo}}</td>
+        <td>{{dado.projecao_m0}}</td>
+        <td>{{dado.real}}</td>
+        <td>{{dado.estoque}}</td>
+        <td><button><a href="{% url 'detalhe' dado.id%}">Detalhe</a></button></td> <!-- permite direcionar para outro link-->
+    </tr>
+    {% endfor %}
+</table>
