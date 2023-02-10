@@ -23,7 +23,8 @@ urlpatterns = [
     path('', views.input_registrado,name= 'input_registrado'),
     path('contato/', views.contato),
     path('minha_historia/', views.minha_historia),
-    path('novo_input/', views.novo_input,name='novo_input'),
+    path('novo_input/', views.criar,name='novo_input'),
+    path('novo_input/<int:id>/', views.editar,name='editar_input'),
     path('input_realizado/', views.input_realizado,name='input_realizado'),
     path('<int:id>/', views.detalhe,name='detalhe'),
     

@@ -68,8 +68,10 @@ urlpatterns = [
 ]
 
 ```
-
+>
 *views.py* Aqui é possivel montar a visualização de cada pagina.
+**instance** sempre que utilizar esse parametro na função ele instancia algo ja EXISTENTE. 
+
 
 Exemplo de função para retornar o valor inputado.
 ```python
@@ -113,9 +115,9 @@ python manage.py sqlmigrate app_dados_semanal 0001_initial
 
 ```
 
-![Tabela Importadas](image.png)
+![Tabela Importadas](imagens_readme/image.png)
 
-Caso, queira *adicionar ou remover uma coluna de uma tabela*, basta modificar em models e rodar o *manage.py makemigrations* > *python manage.py migrate*.
+Caso, queira *adicionar ou remover uma coluna de uma tabela*, basta modificar em models e rodar o *python manage.py makemigrations* > *python manage.py migrate*.
 
 ### CRUD
 
@@ -152,3 +154,18 @@ def input_registrado(request):
 
 ### VISUALIZAR NO DETALHE DE CADA TRANSAÇÃO  
 Criar uma nova função em view para direcionar pelo id da transação.
+
+### CRIANDO NOVOS INPUTS
+Dentro do template que esta como pagina inicial, inserir um botão para adicionar um novo input de dados.
+
+>FORMS  
+Dentro do APP criar o arquivo *forms.py*. 
+
+
+Esse é a nova pagina para input de valores.
+Com o _ _ all _ _ é possivel trazer todos os campos.
+
+![Novo Formulario Forms](imagens_readme/novo_formulario_forms.png)
+
+### FEATURE EXCLUIR
+

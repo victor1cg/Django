@@ -1,5 +1,9 @@
 <h1> Target vs Sellout </h1>
 
+<button><a href="{% url 'novo_input' %}">NOVO INPUT</a></button>
+<p>
+    
+</p>
 <table border='1'>
     <tr>
         <th>DATA </th>
@@ -26,6 +30,8 @@
         <td>{{dado.real}}</td>
         <td>{{dado.estoque}}</td>
         <td><button><a href="{% url 'detalhe' dado.id%}">Detalhe</a></button></td> <!-- permite direcionar para outro link-->
+        <td><button><a href="{% url 'editar_input' dado.id%}">Editar</a></button></td> <!-- permite direcionar para outro link-->
+        <td><button><a href="{% url 'excluir_input' dado.id%}">Excluir</a></button></td> <!-- permite direcionar para outro link-->
     </tr>
     {% endfor %}
 </table>
