@@ -92,11 +92,6 @@ Como submeter dados em um banco de dados ?
 
 Documentação: https://docs.djangoproject.com/en/3.1/topics/db/models/
 
-> DATA:
-> CLIENTE : 
-> MODELO : 
-> SELLOUT : PROJEÇÃO M0, REAL, ESTOQUE
-
 
 SQLite - Não precisa instalar servidor, pois já é nativo Python.  
 
@@ -152,6 +147,65 @@ def input_registrado(request):
     return render (request,'input_registrado.html', context = dados)
 ```
 
+#### **HASHTAG CANDIOTO** :
+
+```python
+#dentro de models.py podemos adicionar uma segunda tabela com relação na chave na primeira tabela:
+class Question():
+    question_text = models.CharField(max_lenght =100)
+    pub_date = models.DateTime('date published') #data published é o alias do campo;
+    
+    #função ao realizar Question.objects.all() irá retornar a descrição da pergunta.
+    def __str__(self):
+        return self.question_text()
+    
+    #função que verifica se o pub date é de hoje, ou de ontem;
+    #timedelta é uma função para adicionar dias em alguma data;
+    def was_published_recently(self):
+        return self.pub_date >= timezone.now()-datetime.timedelta(days=1)
+
+class Choice (models.Model):
+    # nessa linha existe uma relação que necessariamente precisa existir uma question para ter uma choice.
+    question = models.ForeignKey(Question, on_delete = models.cascade)
+    choice_text = models.CharField()
+    votes = models.IntegerField(default=0)
+
+
+```
+
+
+**No shell** é possivel realizar algumas consultas:
+
+```bash
+python manage.py shell
+---------
+from app_dados_semanal.models import Semanal
+
+Semanal.objects.all()
+Out[]: <QuerySet [<Semanal: Semanal object (1)>, <Semanal: Semanal object (2)>, <Semanal: Semanal object (3)>]>
+#ou seja, temos 3 registros aqui no DB. Pois, instaciamos o Object Semanal.
+
+#CRIANDO UM NOVO REGISTRO
+q = Semanal(data = '2023-01-02',cliente = 'FAST SHOP',modelo = 'LAC12',estoque = 100)
+print(q)
+q.save()
+
+#consultar os atributos
+q.id
+Out[]: 4
+q.modelo
+Out[]: 'LAC12'
+
+# choice_set is a  automatically generating a field on each instance called choice_set where Choice is s the model with a ForeignKey field.
+
+q.choice_set.create(choice_text = 'Curti', votes =10)
+q.choice_set.create(choice_text = 'Não Curti', votes =3)
+
+q.choice_set.all()
+
+
+```
+----
 ### VISUALIZAR NO DETALHE DE CADA TRANSAÇÃO  
 Criar uma nova função em view para direcionar pelo id da transação.
 
