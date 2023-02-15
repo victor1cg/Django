@@ -1,37 +1,44 @@
-<h1> Target vs Sellout </h1>
-
-<button><a href="{% url 'novo_input' %}">NOVO INPUT</a></button>
+{% extends 'base.html' %}
+{% block conteudo %}
+<h1 style="text-align: center;"> Target vs Sellout </h1>
 <p>
-    
 </p>
-<table border='1'>
-    <tr>
-        <th>DATA </th>
-        <th>CLIENTE</th>
-        <th>MODELO</th>
-        <th>PROJEÇÃO MO</th>
-        <th>REAL</th>
-        <th>ESTOQUE</th>
-    </tr>
-    <tr>
-        <td>01/02/2023</td>
-        <td>VIA VAREJO</td>
-        <td>LES11</td>
-        <td>1000</td>
-        <td>240</td>
-        <td>3340</td>
-    </tr>
-    {% for dado in dados %}    <!-- iteração em django-->
-    <tr>
-        <td>{{dado.data}}</td>
-        <td>{{dado.cliente}}</td>
-        <td>{{dado.modelo}}</td>
-        <td>{{dado.projecao_m0}}</td>
-        <td>{{dado.real}}</td>
-        <td>{{dado.estoque}}</td>
-        <td><button><a href="{% url 'detalhe' dado.id%}">Detalhe</a></button></td> <!-- permite direcionar para outro link-->
-        <td><button><a href="{% url 'editar_input' dado.id%}">Editar</a></button></td> <!-- permite direcionar para outro link-->
-        <td><button><a href="{% url 'excluir_input' dado.id%}">Excluir</a></button></td> <!-- permite direcionar para outro link-->
-    </tr>
-    {% endfor %}
-</table>
+
+<div class="container">
+    <button ><a  href="{% url 'novo_input' %}">NOVO INPUT</a></button>
+    <p>
+    </p>
+
+    <table class= 'table table-striped table-bordered'>
+        <tr>
+            <th>DATA </th>
+            <th>CLIENTE</th>
+            <th>MODELO</th>
+            <th>PROJEÇÃO MO</th>
+            <th>REAL</th>
+            <th>ESTOQUE</th>
+        </tr>
+        <!-- <tr>
+            <td>01/02/2023</td>
+            <td>VIA VAREJO</td>
+            <td>LES11</td>
+            <td>1000</td>
+            <td>240</td>
+            <td>3340</td>
+        </tr> -->
+        {% for dado in dados %}    <!-- iteração em django-->
+        <tr>
+            <td>{{dado.data}}</td>
+            <td>{{dado.cliente}}</td>
+            <td>{{dado.modelo}}</td>
+            <td>{{dado.projecao_m0}}</td>
+            <td>{{dado.real}}</td>
+            <td>{{dado.estoque}}</td>
+            <td><button style ="background-color:rgb(175, 191, 202); border: 0;"><a href="{% url 'detalhe' dado.id%}">Detalhe</a></button></td> <!-- permite direcionar para outro link-->
+            <td><button style="background-color:rgb(64, 116, 146);border: 0;"><a style="color:rgb(255, 255, 255);" href="{% url 'editar_input' dado.id%}">Editar</a></button></td> 
+            <td><button style="background-color:rgb(153, 73, 73);border: 0;"><a style="color:rgb(255, 255, 255);" href="{% url 'confirmar_excluir_input' dado.id%}">Excluir</a></button></td> 
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock%}

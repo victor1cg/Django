@@ -27,5 +27,7 @@ urlpatterns = [
     path('novo_input/<int:id>/', views.editar,name='editar_input'),
     path('input_realizado/', views.input_realizado,name='input_realizado'),
     path('<int:id>/', views.detalhe,name='detalhe'),
+    path('confirmar_excluir_input/<int:id>/', views.excluir,name='confirmar_excluir_input'),
+
     
 ]

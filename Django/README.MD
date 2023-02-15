@@ -171,6 +171,22 @@ class Choice (models.Model):
     votes = models.IntegerField(default=0)
 
 
+## Dentro da views.py
+
+#relembrando --> try -  executa o codigo | except: se der erro | else : se der certo | finally : sempre roda.
+
+def vote (request,question_id):
+    question = get_object_or_404(Question, pk = question_id)        #Question é a class
+    try:
+        selected_choice = question.choice_set.get(pk=request.POST['choice'])    #caso aquele question_id seja valido, iremos realizar o POST no vote
+    except KeyError:
+        return render(request, 'pools/vote.html', {'question':question},error_message : "You didn't selected a choice")
+
+    else:
+        selected_choice.votes += 1
+        selected_choice.save()
+        return HttpResponseRedirect(reverse('pools:result'), args=(question.id)))   #reverse é para retornar a pagina resultado
+    
 ```
 
 
@@ -203,9 +219,8 @@ q.choice_set.create(choice_text = 'Não Curti', votes =3)
 
 q.choice_set.all()
 
-
 ```
-----
+----------------------
 ### VISUALIZAR NO DETALHE DE CADA TRANSAÇÃO  
 Criar uma nova função em view para direcionar pelo id da transação.
 
@@ -222,4 +237,7 @@ Com o _ _ all _ _ é possivel trazer todos os campos.
 ![Novo Formulario Forms](imagens_readme/novo_formulario_forms.png)
 
 ### FEATURE EXCLUIR
+
+Boa pratica é receber uma mensagem de confirmação.
+
 

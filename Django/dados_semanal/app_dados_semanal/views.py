@@ -81,3 +81,13 @@ def editar(request, id):
         if formulario.is_valid():
             formulario.save()
         return redirect('input_registrado')
+
+
+def excluir (request,id):
+    dados = {'dados': Semanal.objects.get(pk = id)}
+    
+    if request == 'POST':                   #solicitação de delete
+        dados.delete()
+        return redirect('input_registrado')
+    else:                                   #solicitação get de acesso a pagina
+        return render(request,'confirmar_excluir_input.html',dados)
