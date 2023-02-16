@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+
+<form method="POST">
+    {% csrf_token %}
+    <h1> Confirmar exclusão abaixo : </h1> 
+        <p><strong> Modelo :</strong> {{dados.modelo}}</p>
+        <p><strong> Cliente :</strong> {{dados.cliente}}</p>   
+        <p><strong> Projeção M0 :</strong> {{dados.projecao_m0}}</p>   
+        <p><strong> Estoque :</strong> {{dados.estoque}}</p>   
+
+    <button style="background-color:rgb(192, 192, 192);"><a href="{% url 'input_registrado' %}">Cancelar</a></button>
+    <button style="background-color:rgba(164, 255, 168, 0.877);"type="submit">Confirmar</button>
+
+</form>
+
+{% endblock%}

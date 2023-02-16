@@ -1,0 +1,28 @@
+<!-- MODELO ANTIGO DE INPUT SIMPLES, ABAIXO IREMOS COLOCAR O MODEL FORMS 
+    <form action="{% url 'input_realizado' %}" method="POST">
+    {% csrf_token %}
+    <label for="Tipo de Input">
+    <input type="text" name="TipoInput">
+    <button type = "submit">Salvar</button>  
+    </label>
+</form> -->
+
+<!-- Comentario em HTML
+    - action = sera a url que iremos seguir
+    - csrf_token - questão de segurança
+    - tipo e botão para input
+ -->
+
+ <!--
+    Abaixo uma estrutura simples para que possamos utilizar o Model Forms
+-->
+
+ <form action="" method="POST">
+    {% csrf_token %}
+    <h2>Template Novo Input</h2>
+    <table>
+    {{formulario.as_table}}
+    </table>
+    <button type = "submit">Salvar</button>  
+    </label>
+</form>
