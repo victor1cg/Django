@@ -1,5 +1,5 @@
 ## PROJETO UTILIZANDO DJANGO
-
+ok
 Feito : Victor Gonçalves  
 Data : 02/02/2023
 
