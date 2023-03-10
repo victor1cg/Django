@@ -142,3 +142,30 @@ p>Lorem - texto aleatorio padrão de html.
 
     </FORM>
  </body> 
+
+## CSS
+                                    
+> TAG - Colocamos diretamente dentro do elemento <h1 style = ...
+    
+> Interno - Escolhemos o elemento que ira receber as propriedades. 
+    <head>...
+        <style>
+            { backgorund : darkblue;
+              font-size : 24px 
+            }
+        </style>
+                                    
+> **Externo** - Para termos o mesmo css em comum para todas as paginas.[PROFISSIONAL]
+   Criar uma pasta CSS, e dentro criar um arquivo chamado *estilo.css*
+    <head>...
+        <link rel="stylesheet" href="css/estilo.css">
+    </head>
+
+#### estilo.css
+body {
+    background: darkblue;
+}
+h1 { 
+    color : wheat;
+    font-size: 42px;    
+}
