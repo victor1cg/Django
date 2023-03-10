@@ -162,10 +162,10 @@ p>Lorem - texto aleatorio padrão de html.
     </head>
 
 #### estilo.css
-body {
+body {  
     background: darkblue;
-}
-h1 { 
-    color : wheat;
-    font-size: 42px;    
-}
+}  
+h1 {   
+    color : wheat;  
+    font-size: 42px;      
+}  
